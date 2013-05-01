@@ -21,10 +21,8 @@ angular.module('myApp.controllers', [])
 
 function MyCtrl1($scope, $http) {
 
-    var blankRow = {"name": "name", "type": "string", "desc": "Description associated with the field"}
-
     $scope.editRows = []
-    $scope.editRows.push(blankRow)
+    $scope.editRows.push(new Object({"name": "name", "type": "string", "desc": "Description associated with the field"}))
 
     $http.get("json/dataType.json").success(function (data) {
         $scope.dataTypes = data
@@ -33,7 +31,7 @@ function MyCtrl1($scope, $http) {
 
 
     $scope.addRow = function () {
-        $scope.editRows.push(blankRow)
+        $scope.editRows.push(new Object({"name": "name", "type": "string", "desc": "Description associated with the field"}))
     }
 
     $scope.removeRow = function () {
