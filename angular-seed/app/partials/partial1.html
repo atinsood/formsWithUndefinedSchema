@@ -11,7 +11,8 @@
     <tbody>
     <tr ng-repeat="row in editRows">
         <td>
-            <input type=button value="add">
+            <button ng-click="addRow()">Add</button>
+            <button ng-click="removeRow()">Remove</button>
         </td>
         <td><input type=text value={{row.name}}></td>
         <td><input type=text value={{row.desc}}/></td>

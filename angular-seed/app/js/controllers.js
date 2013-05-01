@@ -18,14 +18,25 @@
 
 angular.module('myApp.controllers', [])
 
+
 function MyCtrl1($scope, $http) {
+
+    var blankRow = {"name": "name", "type": "string", "desc": "Description associated with the field"}
+    $scope.editRows = []
+    $scope.editRows.push(blankRow)
 
     $http.get("json/dataType.json").success(function (data) {
         $scope.dataTypes = data
-        console.log(data)
 
     })
-    $scope.editRows = [
-        {"name": "name", "type": "string", "desc": "Description associated with the field"}
-    ]
+
+
+    $scope.addRow = function () {
+        $scope.editRows.push(blankRow)
+    }
+
+    $scope.removeRow = function () {
+        $scope.editRows.pop() //FIXME currently always deleting the last element
+    }
 }
+
