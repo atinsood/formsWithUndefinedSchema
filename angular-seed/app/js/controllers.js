@@ -22,6 +22,7 @@ angular.module('myApp.controllers', [])
 function MyCtrl1($scope, $http) {
 
     var blankRow = {"name": "name", "type": "string", "desc": "Description associated with the field"}
+
     $scope.editRows = []
     $scope.editRows.push(blankRow)
 
@@ -37,6 +38,11 @@ function MyCtrl1($scope, $http) {
 
     $scope.removeRow = function () {
         $scope.editRows.pop() //FIXME currently always deleting the last element
+    }
+
+    //TODO Temp fucntion that needs to be cleaned up
+    $scope.show = function () {
+        console.log($scope.editRows)
     }
 }
 

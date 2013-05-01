@@ -1,26 +1,31 @@
-<table class="table table-hover table-bordered">
-    <thead>
-    <tr>
-        <th>Add</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Nillable</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="row in editRows">
-        <td>
-            <button ng-click="addRow()">Add</button>
-            <button ng-click="removeRow()">Remove</button>
-        </td>
-        <td><input type=text value={{row.name}}></td>
-        <td><input type=text value={{row.desc}}/></td>
-        <td><select>
-            <option ng-repeat="type in dataTypes" value={{type}}>{{type}}</option>
-            <!-- Other already created data types" -->
-        </select></td>
-        <td><input type=checkbox></td>
-    </tr>
-    </tbody>
-</table>
+<form ng-submit="submit()">
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>Add</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Nillable</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in editRows">
+            <td>
+                <button ng-click="addRow()">Add</button>
+                <button ng-click="removeRow()">Remove</button>
+            </td>
+            <!--<td><input type=text value={{row.name}}></td>-->
+            <td><input type=text ng-model="row.name" name="row.name"></td>
+            <td><input type=text ng-model="row.desc" name="row.desc"/></td>
+            <td><select>
+                <option ng-repeat="type in dataTypes" ng-model="type">{{type}}</option>
+                <!-- Other already created data types" -->
+            </select></td>
+            <td><input type=checkbox></td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right"><input type=submit></p>
+    <button ng-click="show()">Status</button>
+</form>
