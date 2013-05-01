@@ -1,0 +1,25 @@
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>Add</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Nillable</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in editRows">
+        <td>
+            <input type=button value="add">
+        </td>
+        <td><input type=text value={{row.name}}></td>
+        <td><input type=text value={{row.desc}}/></td>
+        <td><select>
+            <option ng-repeat="type in dataTypes" value={{type}}>{{type}}</option>
+            <!-- Other already created data types" -->
+        </select></td>
+        <td><input type=checkbox></td>
+    </tr>
+    </tbody>
+</table>
