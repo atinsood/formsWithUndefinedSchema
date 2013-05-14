@@ -1,4 +1,5 @@
 <form ng-submit="submit()">
+    <label>Name of record :</label><input type="text" ng-model="recordName">
     <table class="table table-hover table-bordered">
         <thead>
         <tr>
@@ -15,7 +16,6 @@
                 <button ng-click="addRow()">Add</button>
                 <button ng-click="removeRow()">Remove</button>
             </td>
-            <!--<td><input type=text value={{row.name}}></td>-->
             <td><input type=text ng-model="row.name" name="row.name"></td>
             <td><input type=text ng-model="row.desc" name="row.desc"/></td>
             <td><select>
