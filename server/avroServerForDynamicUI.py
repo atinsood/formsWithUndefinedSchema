@@ -5,6 +5,8 @@ import tornado.web
 from  tornado.escape import json_decode
 from  tornado.escape import json_encode
 
+schemas = []
+
 
 class DynamicUIRequestHandler(tornado.web.RequestHandler):
 
@@ -15,16 +17,19 @@ class DynamicUIRequestHandler(tornado.web.RequestHandler):
         else:
             #FIXME This is a hack, need to fix the request to be json always
             print('non json content')
-            self.json_args = json_encode(self.request.body)
+            if self.request.body:
+                self.json_args = json_encode(self.request.body)
 
     def post(self):
         self.addHeadersForCORS()
         print(" Here in post ")
         print(self.json_args)
-        import avro.schema
-        schema = avro.schema.parse(json_decode(self.json_args))
-        print schema
-        #Once we have the avro schema from UI we need to work with it
+        self.workWithSchema()
+
+    def get(self):
+        print('Printing schemas')
+        print(schemas)
+        self.write(json_encode(schemas))
 
     def options(self):
         """
@@ -36,12 +41,19 @@ class DynamicUIRequestHandler(tornado.web.RequestHandler):
         self.set_header('Content-Type', 'application/json')
         self.set_header("Access-Control-Allow-Origin", "*")
         self.set_header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With")
-        self.set_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+        self.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.set_header("Access-Control-Allow-Headers",
                         "Content-Type, Depth, User-Agent,"
                         " X-File-Size, X-Requested-With, "
                         "X-Requested-By, If-Modified-Since,"
                         " X-File-Name, Cache-Control")
+
+    def workWithSchema(self):
+        import avro.schema
+        schema = avro.schema.parse(json_decode(self.json_args))
+        print schema
+        #Once we have the avro schema from UI we need to work with it
+        schemas.append(json_decode(self.json_args))
 
 
 application = tornado.web.Application([

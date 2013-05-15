@@ -13,13 +13,13 @@
         <tbody>
         <tr ng-repeat="row in editRows">
             <td>
-                <button ng-click="addRow()">Add</button>
-                <button ng-click="removeRow()">Remove</button>
+                <input type="button" ng-click="addRow()" value="Add"/>
+                <input type="button" ng-click="removeRow()" value="Remove"/>
             </td>
-            <td><input type=text ng-model="row.name" name="row.name"></td>
+            <td><input type=text ng-model="row.name" name="row.name"/></td>
             <td><input type=text ng-model="row.desc" name="row.desc"/></td>
             <td><select>
-                <option ng-repeat="type in dataTypes" ng-model="type">{{type}}</option>
+                <option ng-repeat="type in dataTypes" ng-model="row.type">{{type}}</option>
                 <!-- Other already created data types" -->
             </select></td>
             <td><input type=checkbox></td>
@@ -27,5 +27,4 @@
         </tbody>
     </table>
     <p class="text-right"><input type=submit></p>
-    <button ng-click="show()">Status</button>
 </form>
