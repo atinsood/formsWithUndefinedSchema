@@ -11,14 +11,10 @@ schemas = []
 class DynamicUIRequestHandler(tornado.web.RequestHandler):
 
     def prepare(self):
-        if self.request.headers.get("Content-Type") == "application/json":
+        print self.request.headers.get("Content-Type")
+        if self.request.headers.get("Content-Type") and "application/json" in self.request.headers.get("Content-Type"):
             print("Received json content")
             self.json_args = json_decode(self.request.body)
-        else:
-            #FIXME This is a hack, need to fix the request to be json always
-            print('non json content')
-            if self.request.body:
-                self.json_args = json_encode(self.request.body)
 
     def post(self):
         self.addHeadersForCORS()
@@ -50,10 +46,10 @@ class DynamicUIRequestHandler(tornado.web.RequestHandler):
 
     def workWithSchema(self):
         import avro.schema
-        schema = avro.schema.parse(json_decode(self.json_args))
+        schema = avro.schema.parse(json_encode(self.json_args))
         print schema
         #Once we have the avro schema from UI we need to work with it
-        schemas.append(json_decode(self.json_args))
+        schemas.append(self.json_args)
 
 
 application = tornado.web.Application([
