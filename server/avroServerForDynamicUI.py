@@ -23,6 +23,7 @@ class DynamicUIRequestHandler(tornado.web.RequestHandler):
         self.workWithSchema()
 
     def get(self):
+        self.addHeadersForCORS()
         print('Printing schemas')
         print(schemas)
         self.write(json_encode(schemas))

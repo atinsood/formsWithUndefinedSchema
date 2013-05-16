@@ -71,3 +71,29 @@ function MyCtrl1($scope, $http) {
 
 }
 
+function MyCtrl2($scope, $http) {
+
+    $scope.rows = []
+
+    $http.get('http://localhost:8888/dynamicUI').success(function (data) {
+            console.log("Got schemas");
+            console.log(data);
+
+            //currently hardcoding to schema 1 only
+            var schema1 = data[0]
+            schema1['fields'].forEach(generateUI)
+
+            function generateUI(element, index, array) {
+                $scope.rows.push(new Object({'name': element['name'], 'value': ""}));
+
+            }
+
+        }
+    )
+    ;
+
+    $scope.submit = function () {
+    }
+}
+
+
