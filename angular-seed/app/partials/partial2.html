@@ -1,18 +1,26 @@
-<form ng-submit="submit()">
-    <label>Your form to fill</label>
-    <table class="table table-hover table-bordered">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Value</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="row in rows">
-            <td><input type="text" ng-model="row.name" name="row.name" class="uneditable-input"/></td>
-            <td><input type="text" ng-model="row.value" name="row.value"/></td>
-        </tr>
-        </tbody>
-    </table>
-    <p class="text-right"><input type=submit></p>
-</form>
+<div>
+    <select>
+        <option ng-repeat="schema in schemas" ng-model="schema.name">{{schema.name}}</option>
+        <!-- Other already created data types" -->
+    </select>
+</div>
+<div>
+    <form ng-submit="submit()">
+        <label>Your form to fill</label>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td><label>{{row.name}}</label></td>
+                <td><input type="text" ng-model="row.value" name="row.value"/></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="text-right"><input type=submit></p>
+    </form>
+</div>

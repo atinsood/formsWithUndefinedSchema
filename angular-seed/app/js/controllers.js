@@ -74,11 +74,13 @@ function MyCtrl1($scope, $http) {
 function MyCtrl2($scope, $http) {
 
     $scope.rows = []
+    $scope.schemas = []
 
     $http.get('http://localhost:8888/dynamicUI').success(function (data) {
             console.log("Got schemas");
             console.log(data);
 
+            $scope.schemas = data
             //currently hardcoding to schema 1 only
             var schema1 = data[0]
             schema1['fields'].forEach(generateUI)
