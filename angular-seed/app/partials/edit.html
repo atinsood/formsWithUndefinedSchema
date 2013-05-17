@@ -18,8 +18,7 @@
             </td>
             <td><input type=text ng-model="row.name" name="row.name"/></td>
             <td><input type=text ng-model="row.desc" name="row.desc"/></td>
-            <td><select>
-                <option ng-repeat="type in dataTypes" ng-model="row.type">{{type}}</option>
+            <td><select ng-model="row.type" ng-options="type for type in dataTypes">>
                 <!-- Other already created data types" -->
             </select></td>
             <td><input type=checkbox></td>
