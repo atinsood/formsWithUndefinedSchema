@@ -67,6 +67,17 @@ function MyCtrl1($scope, $http) {
         $http.get("json/dataType.json").success(function (data) {
             $scope.dataTypes = data
         })
+
+        //Request to get user created data types
+        $http.get('http://localhost:8888/dynamicUI').success(function (data) {
+
+            data.forEach(function(element, index, array){
+                $scope.dataTypes.push(element['name'])
+            })
+
+
+        })
+
     }
 
 }

@@ -46,9 +46,13 @@ class DynamicUIRequestHandler(tornado.web.RequestHandler):
                         " X-File-Name, Cache-Control")
 
     def workWithSchema(self):
-        import avro.schema
-        schema = avro.schema.parse(json_encode(self.json_args))
-        print schema
+        """ Current commenting the avro parsing bit to allow complex schemas
+        Since rite now avro is not aware of schema1, shema2 cannot have a field
+        of type schema1. Need to figure out a way to add schema knowledge to 
+        avro in run time"""
+        #import avro.schema
+        #schema = avro.schema.parse(json_encode(self.json_args))
+        #print schema
         #Once we have the avro schema from UI we need to work with it
         schemas.append(self.json_args)
 
