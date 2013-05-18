@@ -91,8 +91,6 @@ function MyCtrl2($scope, $http) {
                 element['index'] = index
             })
             $scope.schemas = data
-
-
         }
     );
 
@@ -103,8 +101,9 @@ function MyCtrl2($scope, $http) {
                 var schema = data[$scope.schemaName['index']]
 
                 //clean up the table showing the form and then repopulate it
-                $scope.rows = []
-                schema['fields'].forEach(generateUI)
+                $scope.rows = [];
+                schema['fields'].forEach(generateUI);
+
                 function generateUI(element, index, array) {
                     $scope.rows.push(new Object({'name': element['name'], 'value': ""}));
 
