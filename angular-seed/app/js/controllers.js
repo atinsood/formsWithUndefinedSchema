@@ -17,8 +17,8 @@ function MyCtrl1($scope, $http) {
     };
 
     //-- Remove row
-    $scope.removeRow = function () {
-        $scope.editRows.pop(); //FIXME currently always deleting the last element
+    $scope.removeRow = function ($index) {
+        $scope.editRows.splice($index, 1);
     };
 
 
@@ -71,7 +71,7 @@ function MyCtrl1($scope, $http) {
         //Request to get user created data types
         $http.get('http://localhost:8888/dynamicUI').success(function (data) {
 
-            data.forEach(function(element, index, array){
+            data.forEach(function (element, index, array) {
                 $scope.dataTypes.push(element['name'])
             })
 
